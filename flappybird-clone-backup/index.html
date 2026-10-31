@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Flappy Bird Online — Official Web Clone</title>
+  <meta name="description" content="Play the exact, pixel-perfect Flappy Bird clone directly in your web browser. Features authentic 120Hz physics, official sprite atlas, full audio SFX, and daily leaderboards.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="preload" href="fonts/Jersey10-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Boot Splash Loader -->
+  <div id="boot-splash" class="boot-splash">
+    <img class="boot-splash__logo" src="sprites/logo.webp" alt="Flappy Bird">
+    <div class="boot-splash__spinner"></div>
+    <div class="boot-splash__label">Loading Assets…</div>
+  </div>
+
+  <!-- Main Game Container -->
+  <div id="app-container">
+    <canvas id="game-canvas"></canvas>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="navbar">
+    <a href="#" class="navbar__logo" id="nav-play">
+      <img src="sprites/logo-nav.webp" alt="Flappy Bird Logo">
+    </a>
+
+    <div class="navbar__group">
+      <a class="navbar__link active" id="nav-play-link" href="#">Play</a>
+      <a class="navbar__link" id="nav-leaderboard" href="#">Leaderboard</a>
+      <a class="navbar__link" id="nav-how-to-play" href="#">How to Play</a>
+    </div>
+
+    <div class="navbar__controls">
+      <button class="navbar__btn" id="nav-name" title="Change Player Name">
+        👤 <span id="navbar-player-name">Flappy Player</span>
+      </button>
+      <button class="navbar__btn navbar__mute" id="navbar-mute" title="Toggle Sound (M)">
+        🔊
+      </button>
+    </div>
+  </nav>
+
+  <!-- Leaderboard Modal -->
+  <div id="leaderboard-modal" class="modal-overlay">
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      
+      <div class="leaderboard-ribbon">
+        <div class="leaderboard-tabs">
+          <button id="tab-daily" class="leaderboard-tab active">Daily</button>
+          <button id="tab-alltime" class="leaderboard-tab">All-Time</button>
+        </div>
+        <div id="daily-countdown" class="leaderboard-countdown">RESETS IN: --H --M --S</div>
+      </div>
+
+      <ul id="leaderboard-rows" class="leaderboard-rows">
+        <!-- Rows dynamically injected by leaderboard.js -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- How to Play Modal -->
+  <div id="how-to-play-modal" class="modal-overlay">
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h2 class="modal-title">HOW TO PLAY</h2>
+
+      <div class="instructions-list">
+        <div class="instructions-item">
+          <div class="instructions-icon">👆</div>
+          <span><strong>Click, Tap, or Spacebar</strong> to flap your wings and gain altitude.</span>
+        </div>
+        <div class="instructions-item">
+          <div class="instructions-icon">⏱️</div>
+          <span>Time your flaps carefully to navigate between the green pipes without crashing.</span>
+        </div>
+        <div class="instructions-item">
+          <div class="instructions-icon">⭐</div>
+          <span>Each pipe you pass awards <strong>+1 point</strong>. Try to beat your highest score!</span>
+        </div>
+      </div>
+
+      <div class="medals-preview">
+        <div class="medal-box">
+          <img src="sprites/medal-bronze.png" alt="Bronze Medal">
+          <span>10+ pts</span>
+        </div>
+        <div class="medal-box">
+          <img src="sprites/medal-silver.png" alt="Silver Medal">
+          <span>20+ pts</span>
+        </div>
+        <div class="medal-box">
+          <img src="sprites/medal-gold.png" alt="Gold Medal">
+          <span>30+ pts</span>
+        </div>
+        <div class="medal-box">
+          <img src="sprites/medal-platinum.png" alt="Platinum Medal">
+          <span>40+ pts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player Name Modal -->
+  <div id="name-modal" class="modal-overlay">
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h2 class="modal-title">YOUR NAME</h2>
+      <input type="text" id="player-name-input" class="name-gate__input" placeholder="Enter name" maxlength="16" autofocus>
+      <div class="name-gate__actions">
+        <button id="save-name-btn" class="pixel-btn-green">SAVE</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script src="leaderboard.js"></script>
+</body>
+</html>

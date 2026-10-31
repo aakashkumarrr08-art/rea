@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>VASU ARCADE — PLAY. FLY. REPEAT. | Professional Gaming Platform</title>
+  <meta name="description" content="Welcome to VASU ARCADE. Play the legendary Flappy Bird game online with original 120Hz physics, global leaderboards, pilot profiles, gaming achievements, and metallic blue pipes.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  
+  <!-- Preload fonts for zero layout shift -->
+  <link rel="preload" href="fonts/Jersey10-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       0. Professional Arcade Boot Loader Screen
+       ========================================================================== -->
+  <div id="arcade-loader" class="arcade-loader-overlay">
+    <div class="loader-chassis">
+      <div class="loader-scanlines"></div>
+      <div class="loader-emblem">🕹️</div>
+      <h2 class="loader-brand text-gradient">VASU ARCADE</h2>
+      <div class="loader-tagline">PLAY. FLY. REPEAT.</div>
+
+      <div class="loader-terminal">
+        <div class="terminal-line"><span class="term-prefix">[SYS]</span> <span id="loader-status-text">INITIALIZING ARCADE BIOS v2.6.0…</span></div>
+      </div>
+
+      <div class="loader-progress-track">
+        <div id="loader-progress-bar" class="loader-progress-fill"></div>
+      </div>
+      <div class="loader-meta">
+        <span class="loader-sub">120Hz FIXED SIMULATION • GLOBAL NET</span>
+        <span id="loader-progress-text" class="loader-pct">0%</span>
+      </div>
+
+      <div class="loader-skip-hint">Click anywhere to skip intro</div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Header & Modern Navigation
+       ========================================================================== -->
+  <header class="arcade-header">
+    <div class="nav-container">
+      <a href="#home" class="brand-link">
+        <div class="brand-emblem">🕹️</div>
+        <div class="brand-title-wrap">
+          <span class="brand-name">VASU ARCADE</span>
+          <span class="brand-tagline">PLAY. FLY. REPEAT.</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#play" class="nav-link">Play Game</a></li>
+        <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#how-to-play" class="nav-link">How to Play</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Pilot Profile Chip -->
+        <button id="nav-profile-btn" class="nav-pilot-chip" title="Open Pilot Dossier & Profile">
+          <span id="nav-profile-chip-text">👨‍💻 Pilot • Lv.1</span>
+        </button>
+
+        <!-- Sound Quick Toggle -->
+        <button id="nav-sound-btn" class="icon-btn" title="Toggle Sound (M)">🔊</button>
+
+        <!-- Sound Settings Gear -->
+        <button id="nav-sound-settings-btn" class="icon-btn" title="Audio & Volume Settings">⚙️</button>
+
+        <!-- Primary CTA -->
+        <a href="#play" id="nav-cta-btn" class="btn-neon-cta">PLAY NOW</a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobile-menu-toggle" class="mobile-toggle-btn" aria-label="Open Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Mobile Slide-out Navigation Drawer
+       ========================================================================== -->
+  <div id="mobile-drawer" class="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand-title-wrap">
+        <span class="brand-name">VASU ARCADE</span>
+        <span class="brand-tagline">PLAY. FLY. REPEAT.</span>
+      </div>
+      <button id="mobile-drawer-close" class="modal-close-btn" aria-label="Close Menu">✕</button>
+    </div>
+
+    <ul class="drawer-menu">
+      <li><a href="#home" class="nav-link">🏠 Home</a></li>
+      <li><a href="#play" class="nav-link">🕹️ Play Game Arena</a></li>
+      <li><a href="#leaderboard" class="nav-link">🏆 Global Leaderboard</a></li>
+      <li><a href="#achievements" class="nav-link">🎖️ Badges & Honors</a></li>
+      <li><a href="#how-to-play" class="nav-link">📖 Flight Manual</a></li>
+      <li><a href="#about" class="nav-link">ℹ️ About Project</a></li>
+    </ul>
+
+    <div class="drawer-actions">
+      <button class="drawer-btn dock-btn" data-target="profile">👤 Pilot Profile & Avatar</button>
+      <button class="drawer-btn dock-btn" data-target="sound">🔊 Audio Settings</button>
+      <a href="#play" class="btn-neon-cta" style="width: 100%; text-align: center; margin-top: 8px;">LAUNCH ARENA</a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       1. HOME / Hero Section
+       ========================================================================== -->
+  <section id="home" class="hero-section arcade-section">
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span>Original 120Hz Mechanics • Global Arena Edition</span>
+      </div>
+
+      <h1 class="hero-title text-gradient">VASU ARCADE</h1>
+      <div class="hero-tagline text-retro">PLAY. FLY. REPEAT.</div>
+
+      <!-- Hero Pilot Status Badge -->
+      <div id="hero-profile-chip" class="hero-pilot-chip" title="Click to edit call-sign & avatar">
+        👨‍💻 <span>Pilot</span> • <span style="color:var(--neon-cyan)">Cadet Pilot (Lv.1)</span>
+      </div>
+
+      <p class="hero-description">
+        The definitive retro-flight gaming platform. Featuring pure zero-lag 120Hz physics, 
+        global competitive leaderboards, unlockable achievement badges, and metallic blue arcade visuals.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#play" id="hero-play-btn" class="btn-neon-cta btn-hero-primary">LAUNCH GAME</a>
+        <a href="#leaderboard" id="hero-scores-btn" class="btn-hero-secondary">GLOBAL RANKS</a>
+        <a href="#achievements" id="hero-badges-btn" class="btn-hero-secondary">ACHIEVEMENTS</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-chip">
+          <span class="stat-chip__value">120 Hz</span>
+          <span class="stat-chip__label">Fixed Simulation</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__value">Global</span>
+          <span class="stat-chip__label">Live Ranks</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__value">12 Badges</span>
+          <span class="stat-chip__label">Career Honors</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip__value">0 Lag</span>
+          <span class="stat-chip__label">Instant In-Browser</span>
+        </div>
+      </div>
+
+      <!-- Developer Identity Credit below Homepage Hero -->
+      <div class="developer-hero-credit">
+        <div class="dev-badge dev-credit-text">
+          VASU ARCADE – Created & Developed by <span class="dev-name-gradient">Aakash Kumar</span> <span class="dev-heart">❤️</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. PLAY GAME Section (Arcade Cabinet)
+       ========================================================================== -->
+  <section id="play" class="play-section arcade-section">
+    <div class="section-container" style="padding-bottom: 20px;">
+      <div class="section-header">
+        <div class="section-subtitle">THE ARENA</div>
+        <h2 class="section-title text-gradient">FLAPPY BIRD ARCADE</h2>
+        <p class="section-desc">Tap, click, or hit Spacebar to flap wings. Dodge the metallic pipes.</p>
+      </div>
+
+      <div class="cabinet-wrapper">
+        <div id="arcade-cabinet" class="arcade-cabinet">
+          
+          <!-- Top Cabinet HUD Bar -->
+          <div class="cabinet-hud">
+            <div class="hud-group">
+              <div class="hud-item">
+                <span class="hud-label">Score</span>
+                <span id="hud-current-score" class="hud-val">0</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">Best Record</span>
+                <span id="hud-best-score" class="hud-val hud-val--gold">0</span>
+              </div>
+            </div>
+
+            <div class="hud-controls">
+              <div id="player-name-display" class="hud-player-chip" title="Click to customize Pilot Profile">
+                👨‍💻 Pilot <span class="badge-level">Lv.1</span>
+              </div>
+              <button id="hud-restart-btn" class="hud-btn" title="Restart Run (R)">🔄 Restart</button>
+              <button id="hud-sound-btn" class="hud-btn" title="Toggle Sound (M)">🔊</button>
+              <button id="hud-fullscreen-btn" class="hud-btn" title="Toggle Fullscreen">⛶</button>
+            </div>
+          </div>
+
+          <!-- Game Viewport & Canvas Screen -->
+          <div id="app-container" class="cabinet-screen">
+            <!-- Boot Loader inside canvas cabinet -->
+            <div id="boot-splash" class="boot-splash">
+              <img class="boot-splash__logo" src="sprites/logo.webp" alt="Vasu Arcade Logo">
+              <div class="boot-splash__spinner"></div>
+              <div class="boot-splash__label">INITIALIZING ARCADE…</div>
+            </div>
+
+            <!-- Authentic 120Hz Canvas -->
+            <canvas id="game-canvas" tabindex="0"></canvas>
+          </div>
+
+          <!-- Bottom Cabinet Keyboard Hints -->
+          <div class="cabinet-footer">
+            <div class="control-hint">
+              <kbd>SPACE</kbd> or <kbd>TAP</kbd> <span>to Flap</span>
+            </div>
+            <div class="control-hint">
+              <kbd>M</kbd> <span>Mute Audio</span>
+            </div>
+            <div class="control-hint">
+              <kbd>R</kbd> <span>Quick Restart</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. GLOBAL LEADERBOARD Section
+       ========================================================================== -->
+  <section id="leaderboard" class="leaderboard-section arcade-section">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-subtitle">THE HALL OF ACES</div>
+        <h2 class="section-title text-gradient">GLOBAL LEADERBOARD</h2>
+        <p class="section-desc">Compete worldwide, qualify for daily tournament rankings, and track your genuine flight logs.</p>
+      </div>
+
+      <!-- Leaderboard Navigation Tabs & Timer -->
+      <div class="lb-controls-bar">
+        <div class="lb-tabs-group">
+          <button class="lb-tab-btn active" data-tab="global">🌐 Global All-Time</button>
+          <button class="lb-tab-btn" data-tab="daily">⚡ Daily Tournament</button>
+          <button class="lb-tab-btn" data-tab="local">📁 My Flight Records</button>
+        </div>
+
+        <div class="lb-meta-group">
+          <div class="daily-reset-pill">
+            <span class="timer-dot"></span>
+            <span>Daily Reset: <strong id="daily-countdown">--:--:--</strong></span>
+          </div>
+          <div class="lb-search-wrap">
+            <input type="text" id="leaderboard-search" class="lb-search-input" placeholder="🔍 Search pilot or score…">
+          </div>
+        </div>
+      </div>
+
+      <!-- Player Standing Sticky Bar -->
+      <div id="player-standing-bar" class="player-standing-bar">
+        <!-- Dynamically populated by arcade.js -->
+      </div>
+
+      <!-- Leaderboard Table Container -->
+      <div class="records-panel">
+        <div class="table-responsive">
+          <table class="arcade-table">
+            <thead>
+              <tr>
+                <th style="width: 15%;">Rank</th>
+                <th style="width: 40%;">Pilot & Call-sign</th>
+                <th style="width: 15%;">Score</th>
+                <th style="width: 15%;">Medal</th>
+                <th style="width: 15%;">Division / Date</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-table-body">
+              <!-- Dynamically populated by arcade.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="leaderboard-empty-notice" class="empty-notice" style="display: none;">
+          No matching pilots found.
+        </div>
+
+        <div class="records-panel-footer">
+          <span class="records-note">Verified 120Hz Fixed Physics engine rankings. Anti-cheat integrity verified.</span>
+          <button id="reset-records-btn" class="btn-ghost-danger">Reset Local Logs</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. ACHIEVEMENTS & BADGES Section
+       ========================================================================== -->
+  <section id="achievements" class="achievements-section arcade-section">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-subtitle">PILOT HONORS</div>
+        <h2 class="section-title text-gradient">GAMING ACHIEVEMENTS</h2>
+        <p class="section-desc">Push your precision flight skills to the limit, unlock prestigious badges, and earn Career XP.</p>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="achievement-filters-bar">
+        <button class="achievement-filter-pill active" data-filter="all">All Honors (<span id="ach-count-all">12</span>)</button>
+        <button class="achievement-filter-pill" data-filter="unlocked">Unlocked (<span id="ach-count-unlocked">0</span>)</button>
+        <button class="achievement-filter-pill" data-filter="locked">In Progress (<span id="ach-count-locked">12</span>)</button>
+      </div>
+
+      <!-- Achievements Cards Grid -->
+      <div id="achievements-grid" class="achievements-grid">
+        <!-- Dynamically rendered by arcade.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. HOW TO PLAY Section
+       ========================================================================== -->
+  <section id="how-to-play" class="how-section arcade-section">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-subtitle">FLIGHT MANUAL</div>
+        <h2 class="section-title text-gradient">HOW TO PLAY</h2>
+        <p class="section-desc">Master the gravity, timing, and gap management to climb the ranks.</p>
+      </div>
+
+      <div class="how-cards-grid">
+        <div class="arcade-card">
+          <div class="card-icon">⌨️</div>
+          <h3 class="card-title">Universal Controls</h3>
+          <p class="card-text">
+            <strong>Desktop:</strong> Press <kbd>SPACE</kbd>, <kbd>↑ UP ARROW</kbd>, or left-click anywhere.<br>
+            <strong>Mobile & Tablet:</strong> Tap anywhere on the game screen.<br>
+            <strong>Sound:</strong> Press <kbd>M</kbd> to toggle audio instantly.
+          </p>
+        </div>
+
+        <div class="arcade-card">
+          <div class="card-icon">⚙️</div>
+          <h3 class="card-title">Authentic Physics</h3>
+          <p class="card-text">
+            Every tap gives the bird an upward impulse of <strong>+1.55 velocity</strong>. 
+            Constant gravity of <strong>5.0 m/s²</strong> pulls down with a maximum fall speed of <strong>2.2</strong>. 
+            Maintain rhythmic tapping to stay level.
+          </p>
+        </div>
+
+        <div class="arcade-card">
+          <div class="card-icon">🛡️</div>
+          <h3 class="card-title">Obstacle Navigation</h3>
+          <p class="card-text">
+            Fly cleanly between the top and bottom blue metallic pipes. 
+            Each pipe passed successfully grants <strong>+1 point</strong>. 
+            Touching either pipe or crashing into the terrain ends the run.
+          </p>
+        </div>
+      </div>
+
+      <!-- Medals Tier Showcase -->
+      <div class="medals-tier-banner">
+        <h4 style="font-size: 20px; color: #fff;">FLIGHT MEDAL TIERS</h4>
+        <div class="medals-row">
+          <div class="medal-item">
+            <img src="sprites/medal-bronze.png" alt="Bronze Medal">
+            <span class="medal-tier">BRONZE</span>
+            <span class="medal-threshold">10+ Points</span>
+          </div>
+          <div class="medal-item">
+            <img src="sprites/medal-silver.png" alt="Silver Medal">
+            <span class="medal-tier">SILVER</span>
+            <span class="medal-threshold">20+ Points</span>
+          </div>
+          <div class="medal-item">
+            <img src="sprites/medal-gold.png" alt="Gold Medal">
+            <span class="medal-tier">GOLD</span>
+            <span class="medal-threshold">30+ Points</span>
+          </div>
+          <div class="medal-item">
+            <img src="sprites/medal-platinum.png" alt="Platinum Medal">
+            <span class="medal-tier">PLATINUM</span>
+            <span class="medal-threshold">40+ Points</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. ABOUT Section
+       ========================================================================== -->
+  <section id="about" class="about-section arcade-section">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-subtitle">PROJECT DOSSIER</div>
+        <h2 class="section-title text-gradient">ABOUT VASU ARCADE</h2>
+        <p class="section-desc">An independent web gaming tribute built with passion for retro-arcade game design.</p>
+      </div>
+
+      <div class="about-content">
+        <p>
+          <strong class="about-highlight">VASU ARCADE</strong> was conceived as a high-fidelity preservation and modernization showcase for classic arcade titles. 
+          Rather than rebuilding from approximations, our Flappy Bird edition is rooted in the 
+          <strong>authentic, reverse-engineered 120Hz physics engine</strong> of the original web release.
+        </p>
+
+        <p>
+          We set out to answer a clear design challenge: <em>Can we give the legendary game a modern, cinematic arcade look without altering its iconic, razor-sharp gameplay mechanics?</em> 
+          By mathematically preserving every collision boundary, jump impulse, and pipe gap while custom-crafting metallic blue pixel-art pipes, scenic mountain horizons, and dark neon chassis framing, 
+          VASU ARCADE brings the thrill back to modern screens.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-pill">
+            <h4>Fixed 120Hz Physics</h4>
+            <p>Runs on a deterministic simulation accumulator with sub-frame interpolation for buttery smoothness across 60Hz, 120Hz, and 144Hz monitors.</p>
+          </div>
+          <div class="about-pill">
+            <h4>No Framework Bloat</h4>
+            <p>Engineered using pure Vanilla JavaScript, HTML5 Canvas 2D, and optimized Vanilla CSS. Instant loading with zero bundle overhead.</p>
+          </div>
+          <div class="about-pill">
+            <h4>Authentic Audio</h4>
+            <p>Integrated retro sound effects paired with real-time Web Audio API frequency synthesis as an instant fallback.</p>
+          </div>
+          <div class="about-pill">
+            <h4>Privacy & Honest Records</h4>
+            <p>No tracking scripts, no spam, no fake bots. All personal flight logs are saved honestly on your local device.</p>
+          </div>
+        </div>
+
+        <!-- Developer Credit Card in About -->
+        <div class="developer-about-card">
+          <div class="dev-avatar">👨‍💻</div>
+          <div class="dev-meta">
+            <div class="dev-credit-text">
+              VASU ARCADE – Created & Developed by <span class="dev-name-gradient">Aakash Kumar</span> <span class="dev-heart">❤️</span>
+            </div>
+            <div class="dev-subtext">Architected with pure 120Hz canvas simulation, authentic reverse-engineered physics, and modern arcade styling.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Footer
+       ========================================================================== -->
+  <footer class="arcade-footer">
+    <div class="footer-container">
+      <div class="footer-brand">VASU ARCADE</div>
+      <div class="footer-tagline">PLAY. FLY. REPEAT.</div>
+      <div class="footer-dev-credit dev-credit-text">
+        VASU ARCADE – Created & Developed by <span class="dev-name-gradient">Aakash Kumar</span> <span class="dev-heart">❤️</span>
+      </div>
+      <p class="footer-copy">
+        © 2026 VASU ARCADE. An independent retro-arcade gaming showcase. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Mobile Bottom Quick Dock (Thumb-Friendly for Phones)
+       ========================================================================== -->
+  <nav class="mobile-bottom-dock">
+    <button class="dock-btn" data-target="home">
+      <span class="dock-icon">🏠</span>
+      <span class="dock-label">Home</span>
+    </button>
+    <button class="dock-btn" data-target="play">
+      <span class="dock-icon">🕹️</span>
+      <span class="dock-label">Play</span>
+    </button>
+    <button class="dock-btn" data-target="leaderboard">
+      <span class="dock-icon">🏆</span>
+      <span class="dock-label">Ranks</span>
+    </button>
+    <button class="dock-btn" data-target="achievements">
+      <span class="dock-icon">🎖️</span>
+      <span class="dock-label">Badges</span>
+    </button>
+    <button class="dock-btn" data-target="profile">
+      <span class="dock-icon">👤</span>
+      <span class="dock-label">Profile</span>
+    </button>
+  </nav>
+
+  <!-- ==========================================================================
+       Modal: Pilot Profile Dossier
+       ========================================================================== -->
+  <div id="profile-modal" class="arcade-modal">
+    <div class="modal-backdrop modal-backdrop-dismiss"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-badge">PILOT DOSSIER</span>
+          <h3 class="modal-title">PILOT PROFILE & CAREER</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close Profile Modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Profile Banner -->
+        <div class="profile-banner">
+          <div id="modal-avatar-display" class="profile-avatar-large">👨‍💻</div>
+          <div class="profile-banner-info">
+            <div class="profile-name-row">
+              <input type="text" id="profile-name-input" class="profile-name-input" maxlength="16" placeholder="Enter Call-sign">
+            </div>
+            <div id="modal-level-badge" class="profile-rank-badge">Level 1 • Cadet Pilot</div>
+            
+            <div class="profile-xp-track">
+              <div id="modal-xp-bar" class="profile-xp-fill" style="width: 10%;"></div>
+            </div>
+            <div class="profile-xp-meta">
+              <span>Career Experience</span>
+              <strong id="modal-xp-text">0 XP</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar Picker Grid -->
+        <div class="profile-field-group">
+          <label class="profile-field-label">CHOOSE YOUR PILOT AVATAR</label>
+          <div id="profile-avatar-picker" class="avatar-picker-grid">
+            <!-- Dynamically populated by arcade.js -->
+          </div>
+        </div>
+
+        <!-- Career Lifetime Metrics -->
+        <div class="profile-stats-grid">
+          <div class="p-stat-box">
+            <span class="p-stat-label">Best Record</span>
+            <strong id="profile-stat-best" class="p-stat-val" style="color:var(--gold)">0</strong>
+          </div>
+          <div class="p-stat-box">
+            <span class="p-stat-label">Total Flights</span>
+            <strong id="profile-stat-runs" class="p-stat-val">0</strong>
+          </div>
+          <div class="p-stat-box">
+            <span class="p-stat-label">Pipes Cleared</span>
+            <strong id="profile-stat-pipes" class="p-stat-val" style="color:var(--neon-cyan)">0</strong>
+          </div>
+          <div class="p-stat-box">
+            <span class="p-stat-label">Honors Unlocked</span>
+            <strong id="profile-stat-badges" class="p-stat-val">0 / 12</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-ghost modal-close-btn">Cancel</button>
+        <button type="button" id="save-profile-btn" class="btn-neon-cta">SAVE PROFILE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Modal: Sound & Audio Settings
+       ========================================================================== -->
+  <div id="sound-modal" class="arcade-modal">
+    <div class="modal-backdrop modal-backdrop-dismiss"></div>
+    <div class="modal-card modal-card-sm">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-badge">AUDIO ENGINE</span>
+          <h3 class="modal-title">SOUND SETTINGS</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close Sound Modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Master Mute Toggle -->
+        <div class="sound-setting-row">
+          <div class="sound-label-wrap">
+            <span class="sound-title">Master Game Audio</span>
+            <span class="sound-sub">Enable or mute all gameplay SFX and synthesizer audio</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="sound-mute-checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <!-- Volume Slider -->
+        <div class="sound-setting-row volume-slider-row">
+          <div class="sound-label-wrap">
+            <div class="vol-title-bar">
+              <span class="sound-title">Master Volume</span>
+              <span id="sound-volume-percent" class="vol-percent-badge">85%</span>
+            </div>
+            <input type="range" id="sound-volume-slider" class="arcade-range-slider" min="0" max="100" value="85">
+          </div>
+        </div>
+
+        <!-- SFX Preview Test Controls -->
+        <div class="sfx-preview-box">
+          <div class="sfx-preview-title">TEST SOUND EFFECTS</div>
+          <div class="sfx-preview-buttons">
+            <button type="button" class="btn-sfx-test" data-sound="wing">🪽 Flap Wing</button>
+            <button type="button" class="btn-sfx-test" data-sound="point">🔔 Point Score</button>
+            <button type="button" class="btn-sfx-test" data-sound="hit">💥 Pipe Hit</button>
+            <button type="button" class="btn-sfx-test" data-sound="die">💀 Game Over</button>
+          </div>
+        </div>
+
+        <div class="shortcut-tip">
+          <span>Tip: Press <kbd>M</kbd> during gameplay to instantly toggle audio.</span>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-neon-cta modal-close-btn" style="width: 100%;">APPLY & CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container for Achievements & Level-ups -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="game.js"></script>
+  <script src="arcade.js"></script>
+</body>
+</html>
