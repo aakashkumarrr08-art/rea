@@ -374,6 +374,16 @@ class VasuArcade {
       this.closeMobileDrawer();
     });
 
+    document.getElementById('mobile-drawer-backdrop')?.addEventListener('click', () => {
+      this.closeMobileDrawer();
+    });
+
+    document.querySelectorAll('.mobile-drawer .nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        this.closeMobileDrawer();
+      });
+    });
+
     // Mobile Bottom Dock Buttons
     document.querySelectorAll('.dock-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -385,17 +395,20 @@ class VasuArcade {
         } else if (target) {
           this.navigateTo(target);
         }
+        this.closeMobileDrawer();
       });
     });
   }
 
   openMobileDrawer() {
     this.mobileDrawer?.classList.add('active');
+    document.getElementById('mobile-drawer-backdrop')?.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   closeMobileDrawer() {
     this.mobileDrawer?.classList.remove('active');
+    document.getElementById('mobile-drawer-backdrop')?.classList.remove('active');
     document.body.style.overflow = '';
   }
 
@@ -519,7 +532,7 @@ class VasuArcade {
     // Update Navbar Chips
     const navChip = document.getElementById('nav-profile-chip-text');
     if (navChip) {
-      navChip.textContent = `${this.playerAvatar} ${this.playerName} • Lv.${metrics.level}`;
+      navChip.innerHTML = `<span class="chip-av">${this.playerAvatar}</span> <span class="chip-name">${this.playerName}</span> <span class="chip-lvl">Lv.${metrics.level}</span>`;
     }
 
     // Update Cabinet HUD

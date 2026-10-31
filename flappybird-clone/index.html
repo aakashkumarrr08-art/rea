@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>VASU ARCADE — PLAY. FLY. REPEAT. | Professional Gaming Platform</title>
   <meta name="description" content="Welcome to VASU ARCADE. Play the legendary Flappy Bird game online with original 120Hz physics, global leaderboards, pilot profiles, gaming achievements, and metallic blue pipes.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -65,17 +65,17 @@
       <div class="nav-actions">
         <!-- Pilot Profile Chip -->
         <button id="nav-profile-btn" class="nav-pilot-chip" title="Open Pilot Dossier & Profile">
-          <span id="nav-profile-chip-text">👨‍💻 Pilot • Lv.1</span>
+          <span id="nav-profile-chip-text"><span class="chip-av">👨‍💻</span> <span class="chip-name">Pilot</span> <span class="chip-lvl">Lv.1</span></span>
         </button>
 
         <!-- Sound Quick Toggle -->
         <button id="nav-sound-btn" class="icon-btn" title="Toggle Sound (M)">🔊</button>
 
-        <!-- Sound Settings Gear -->
-        <button id="nav-sound-settings-btn" class="icon-btn" title="Audio & Volume Settings">⚙️</button>
+        <!-- Sound Settings Gear (Desktop/Drawer) -->
+        <button id="nav-sound-settings-btn" class="icon-btn nav-desktop-only" title="Audio & Volume Settings">⚙️</button>
 
-        <!-- Primary CTA -->
-        <a href="#play" id="nav-cta-btn" class="btn-neon-cta">PLAY NOW</a>
+        <!-- Primary CTA (Desktop) -->
+        <a href="#play" id="nav-cta-btn" class="btn-neon-cta nav-desktop-only">PLAY NOW</a>
 
         <!-- Mobile Hamburger Toggle -->
         <button id="mobile-menu-toggle" class="mobile-toggle-btn" aria-label="Open Mobile Navigation">
@@ -85,9 +85,8 @@
     </div>
   </header>
 
-  <!-- ==========================================================================
-       Mobile Slide-out Navigation Drawer
-       ========================================================================== -->
+  <!-- Mobile Drawer Backdrop & Drawer -->
+  <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop"></div>
   <div id="mobile-drawer" class="mobile-drawer">
     <div class="drawer-header">
       <div class="brand-title-wrap">
